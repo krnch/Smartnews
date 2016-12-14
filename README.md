@@ -10,7 +10,7 @@ Web application built in flask
 
 [Register for news api access here](https://newsapi.org/register "News Api")
 
-[Link to the newspaper library](https://github.com/codelucas/newspaper "Newspaper library)
+[Link to the newspaper library](https://github.com/codelucas/newspaper "Newspaper library")
 
 **Steps to run the application - 
 
