@@ -12,7 +12,7 @@ Web application built in flask
 
 [Link to the newspaper library](https://github.com/codelucas/newspaper "Newspaper library")
 
-**Steps to run the application - **
+**Steps to run the application -**
 
 1)fork the repository 
 
@@ -20,7 +20,7 @@ Web application built in flask
 
 3)python run.py to run the application
 
-**currently completed features -**
+**Currently completed features -**
 
 1)login(based on openid)
 
@@ -28,7 +28,7 @@ Web application built in flask
 
 3)passing news api data to curate and process articles
 
-**to be implemented(soon)**
+**To be implemented(soon)**
 
 1)curate and process obtained data using newspaper article
 
