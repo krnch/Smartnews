@@ -16,9 +16,9 @@ Web application built in flask
 
 1)fork the repository 
 
-2)python db_create.py to create user  login database 
+2)to create user  login database  -`python db_create.py` 
 
-3)python run.py to run the application
+3)to run the application - `python run.py`
 
 **Currently completed features -**
 
