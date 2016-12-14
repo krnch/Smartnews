@@ -1,28 +1,42 @@
-from flask import render_template, flash, redirect, session, url_for, request, g
+from flask import json,url_for,render_template, flash, redirect, session, url_for, request, g
 from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db, lm, oid
 from .forms import LoginForm
 from .models import User
+import requests
+from itertools import repeat
 
 @app.route('/')
 @app.route('/index')
 @login_required
 def index():
     user = g.user
-    posts = [
-        {
-            'author': {'nickname': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'nickname': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
+    r=requests.get('https://newsapi.org/v1/articles?source=techcrunch&apiKey=3169bba2dc224d789955587d3544e310')
+
+    resp=r.json()
+
+    d = [[] for i in repeat(None, 1000)]
+    p=0
+    for i in resp['articles']:
+	d[p].append (i['title'])
+	d[p].append (i['url'])
+       	d[p].append (i['urlToImage'])
+       	p=p+1
+
     return render_template('index.html',
                            title='Home',
                            user=user,
-                           posts=posts)
+                           tags=d)
+
+@app.route('/recommendation', methods=['POST'])
+def recommendation():
+    checked = request.form.getlist('channel')
+
+    # processing recommendations
+     
+    return render_template('recommendation.html',tags = checked)
+
+
 @app.route('/logout')
 def logout():
     logout_user()

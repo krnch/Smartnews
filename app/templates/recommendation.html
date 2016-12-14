@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Hi, {{ user.nickname }}!</h1>
-        <title>Smartnews</title>
+
+    <title>Smartnews</title>
   <form action="recommendation" method="post" name="checks">
   {% for c in tags %}
   <input type="checkbox" value="{{c}}" name="channel"> {{c}}<br>
   {% endfor %}
   <br>
   <input type="submit" value="Submit">
+
 
 {% endblock %}
