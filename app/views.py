@@ -3,9 +3,14 @@ from flask_login import login_user, logout_user, current_user, login_required
 from app import app, db, lm, oid
 from .forms import LoginForm
 from .models import User
+from newspaper import Article
+from xml.etree  import ElementTree
+from nytimesarticle import articleAPI
 import requests
 from itertools import repeat
-apikey='Your api key'
+api = articleAPI('your ny times api key')
+apikey='Your news api  key'
+
 @app.route('/')
 @app.route('/index')
 @login_required
@@ -31,11 +36,66 @@ def index():
 @app.route('/recommendation', methods=['POST'])
 def recommendation():
     checked = request.form.getlist('channel')
+    url_to_clean = checked[0]
+    if not url_to_clean:
+        return redirect(url_for('index'))
 
-    # processing recommendations
-     
-    return render_template('recommendation.html',tags = checked)
+    article = Article(url_to_clean)
+    article.download()
+    article.parse()
 
+    try:
+      html_string = ElementTree.tostring(article.clean_top_node)
+    except:
+      html_string = "Error converting html to string."
+
+    try:
+      article.nlp()
+    except:
+      artstr="nlp not done"
+
+    a = {
+          
+         'keywords': str(', '.join(article.keywords)),
+         
+         }
+    
+    # do something with checked array
+    articles = api.search( q = article.keywords[1], fq = {'headline':article.keywords[1], 'source':['Reuters','AP', 'The New York Times']},begin_date = 20111231 )
+    
+    news = []
+    for i in articles['response']['docs']:
+        dic = {}
+        dic['id'] = i['_id']
+        if i['abstract'] is not None:
+            dic['abstract'] = i['abstract'].encode("utf8")
+        dic['headline'] = i['headline']['main'].encode("utf8")
+        dic['desk'] = i['news_desk']
+        dic['date'] = i['pub_date'][0:10] # cutting time of day.
+        dic['section'] = i['section_name']
+        if i['snippet'] is not None:
+            dic['snippet'] = i['snippet'].encode("utf8")
+        dic['source'] = i['source']
+        dic['type'] = i['type_of_material']
+        dic['url'] = i['web_url']
+        dic['word_count'] = i['word_count']
+        # locations
+        locations = []
+        for x in range(0,len(i['keywords'])):
+            if 'glocations' in i['keywords'][x]['name']:
+                locations.append(i['keywords'][x]['value'])
+        dic['locations'] = locations
+        # subject
+        subjects = []
+        for x in range(0,len(i['keywords'])):
+            if 'subject' in i['keywords'][x]['name']:
+                subjects.append(i['keywords'][x]['value'])
+        dic['subjects'] = subjects   
+        news.append(dic)     								
+    
+    
+    
+    return render_template('recommendation.html',tags = checked,dat=news)
 
 @app.route('/logout')
 def logout():

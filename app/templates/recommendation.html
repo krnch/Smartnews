@@ -3,8 +3,18 @@
 
     <title>Smartnews</title>
   <form action="recommendation" method="post" name="checks">
+<a href=" {{tags[0]}}">Go to Main article </a> <br><br><br>
+ {% for i in dat %}
 
-<a href=" {{tags[0]}}">Go to article </a> <br>
+{{i["headline"]}}<br>
+
+ <a href=" {{i['url']}}">Go to article </a> <br>
+
+ 
+  
+  {% endfor %}
+
+
 </form>
 
 
