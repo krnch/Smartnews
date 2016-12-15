@@ -3,11 +3,9 @@
 
     <title>Smartnews</title>
   <form action="recommendation" method="post" name="checks">
-  {% for c in tags %}
-  <input type="checkbox" value="{{c}}" name="channel"> {{c}}<br>
-  {% endfor %}
-  <br>
-  <input type="submit" value="Submit">
+
+<a href=" {{tags[0]}}">Go to article </a> <br>
+</form>
 
 
 {% endblock %}

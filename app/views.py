@@ -14,8 +14,8 @@ def index():
     r=requests.get('https://newsapi.org/v1/articles?source=techcrunch&apiKey=3169bba2dc224d789955587d3544e310')
 
     resp=r.json()
-
-    d = [[] for i in repeat(None, 1000)]
+    l=len(resp['articles'])
+    d = [[] for i in repeat(None, l)]
     p=0
     for i in resp['articles']:
 	d[p].append (i['title'])
