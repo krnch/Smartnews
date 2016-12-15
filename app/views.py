@@ -5,13 +5,13 @@ from .forms import LoginForm
 from .models import User
 import requests
 from itertools import repeat
-
+apikey='Your api key'
 @app.route('/')
 @app.route('/index')
 @login_required
 def index():
     user = g.user
-    r=requests.get('https://newsapi.org/v1/articles?source=techcrunch&apiKey=3169bba2dc224d789955587d3544e310')
+    r=requests.get("https://newsapi.org/v1/articles?source=techcrunch&apiKey="+apikey)
 
     resp=r.json()
     l=len(resp['articles'])

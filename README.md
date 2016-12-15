@@ -12,13 +12,17 @@ Web application built in flask
 
 [Link to the newspaper library](https://github.com/codelucas/newspaper "Newspaper library")
 
+
+
 **Steps to run the application -**
 
 1)fork the repository 
 
-2)to create user  login database  -`python db_create.py` 
+2)Run `pip install -r requirements.txt` to install required packages in python
 
-3)to run the application - `python run.py`
+3)to create user  login database  -`python db_create.py` 
+
+4)to run the application - `python run.py`
 
 **Currently completed features -**
 
