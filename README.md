@@ -20,9 +20,11 @@ Web application built in flask
 
 2)Run `pip install -r requirements.txt` to install required packages in python
 
-3)to create user  login database  -`python db_create.py` 
+3)Insert api key in the placeholder in `app\views.py`
 
-4)to run the application - `python run.py`
+4)to create user  login database  -`python db_create.py` 
+
+5)to run the application - `python run.py`
 
 **Currently completed features -**
 
