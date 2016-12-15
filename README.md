@@ -27,7 +27,7 @@ Web application built in flask
 
 3) Install news paper library `pip install newspaper` .[ For further details](https://pypi.python.org/pypi/newspaper "newspaper library") 
 
-4) Install ny times article package `https://pypi.python.org/pypi/nytimesarticle/0.1.0`. [ For further details](https://pypi.python.org/pypi/nytimesarticle/0.1.0 "ny times article package")
+4) Install ny times article package `pip install nytimesarticle`. [ For further details](https://pypi.python.org/pypi/nytimesarticle/0.1.0 "ny times article package")
 
 5)Insert both api keys in their respective placeholders in `app/views.py`
  
