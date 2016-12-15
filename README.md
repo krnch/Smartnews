@@ -4,7 +4,11 @@
 
 libraries and api's used -
 
-News Api , Newspaper library for natural language processing and article curation 
+1)News Api to get live news
+
+2)Newspaper library for natural language processing and article curation 
+
+3)Ny times Search api library to generate recommended news based on keywords extracted from step 2
 
 Web application built in flask 
 
@@ -12,6 +16,7 @@ Web application built in flask
 
 [Link to the newspaper library](https://github.com/codelucas/newspaper "Newspaper library")
 
+[Register for ny times search api](http://developer.nytimes.com "Ny times search api")
 
 
 **Steps to run the application -**
@@ -20,11 +25,15 @@ Web application built in flask
 
 2)Run `pip install -r requirements.txt` to install required packages in python
 
-3)Insert api key in the placeholder in `app/views.py`
+3) Install news paper library `pip install newspaper` .[ For further details](https://pypi.python.org/pypi/newspaper "newspaper library") 
 
-4)to create user  login database  -`python db_create.py` 
+4) Install ny times article package `https://pypi.python.org/pypi/nytimesarticle/0.1.0`. [ For further details](https://pypi.python.org/pypi/nytimesarticle/0.1.0 "ny times article package")
 
-5)to run the application - `python run.py`
+5)Insert both api keys in their respective placeholders in `app/views.py`
+ 
+6)to create user  login database  -`python db_create.py` 
+
+7)to run the application - `python run.py`
 
 **Currently completed features -**
 
@@ -34,10 +43,10 @@ Web application built in flask
 
 3)passing news api data to curate and process articles
 
-**To be implemented(soon)**
+4)curate and process obtained data using newspaper article
 
-1)curate and process obtained data using newspaper article
+5)Ui features
 
-2)Ui features 
+6)Recommending news articles based on keywords
 
-3)use amazon s3 to store recommended data in  json format 
+Also Check out the chrome plugin which uses similar recommendation logic here. [Chrome Plugin]("chrome_plugin_url")
