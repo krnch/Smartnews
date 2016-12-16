@@ -49,4 +49,3 @@ Web application built in flask
 
 6)Recommending news articles based on keywords
 
-Also Check out the chrome plugin which uses similar recommendation logic here. [Chrome Plugin]("chrome_plugin_url")
