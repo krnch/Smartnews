@@ -1,6 +1,6 @@
 # Smartnews
 
-#Application for recommending live news obtained from news api 
+# Application for recommending live news obtained from news api 
 
 libraries and api's used -
 
